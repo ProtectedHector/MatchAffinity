@@ -29,23 +29,7 @@ class DefaultController extends AbstractController
      */
     public function index()
     {
-        $em = $this->getDoctrine()->getManager();
-        $em->getConnection()->connect();
-        $connected = $em->getConnection()->isConnected();
-        var_dump($connected);
-
-//        $user = new User();
-//        $user->setEmail('a@a.com')
-//            ->setRoles(['ROLE_ADMIN'])
-//        ;
-//        $user->setPassword($this->passwordEncoder->encodePassword(
-//            $user,
-//            'ADSF98ADSF£"TGKV987HVK23'
-//        ));
-//        $this->getDoctrine()->getManager()->persist($user);
-//        $this->getDoctrine()->getManager()->flush();
-
-        return $this->render('base.html.twig');
+        return $this->redirectToRoute('list');
     }
 
     /**
