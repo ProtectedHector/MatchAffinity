@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    {{ form_start(form) }}
+    {{ form_row(form.existing) }}
+    ... or
+    {{ form_row(form.name) }}
+    {{ form_row(form.submit) }}
+    {{ form(form) }}
+{% endblock %}
+
