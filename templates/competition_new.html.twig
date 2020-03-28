@@ -1,0 +1,10 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    Available competitions:
+    {% for competition in competitions %}
+        {{ competition.name }},
+    {% endfor %}
+    {{ form(form) }}
+{% endblock %}
+

@@ -3,7 +3,10 @@
 namespace App\Form;
 
 use App\Entity\Competition;
+use App\Entity\Location;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -13,6 +16,14 @@ class CompetitionType extends AbstractType
     {
         $builder
             ->add('name')
+            ->add('location', EntityType::class, [
+                'class' => Location::class,
+                'choice_label' => 'name',
+                'label' => 'Select Location: ',
+                'placeholder' => '--Select--',
+                'required' => false
+            ])
+            ->add('submit', SubmitType::class)
         ;
     }
 

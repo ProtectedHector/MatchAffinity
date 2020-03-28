@@ -18,12 +18,13 @@ class LocationType extends AbstractType
             ->add('name', TextType::class, [
                 'label' => "Create Location (if it doesn't exist)"
             ])
-            ->add('existing', EntityType::class, [
-                'class' => Location::class,
-                'choice_label' => 'name',
-                'label' => 'Select Location: ',
-                'placeholder' => '--Select--'
-            ])
+//            ->add('existing', EntityType::class, [
+//                'class' => Location::class,
+//                'choice_label' => 'name',
+//                'label' => 'Select Location: ',
+//                'placeholder' => '--Select--',
+//                'required' => false
+//            ])
             ->add('submit', SubmitType::class)
         ;
     }
