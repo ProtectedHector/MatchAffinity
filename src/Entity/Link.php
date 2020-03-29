@@ -22,7 +22,7 @@ class Link
     private $url;
 
     /**
-     * @ORM\Column(type="enumvisibility")
+     * @ORM\Column(type="enumlinktype")
      */
     private $type;
 

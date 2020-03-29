@@ -7,9 +7,18 @@ namespace App\Controller;
 use App\Entity\Competition;
 use App\Entity\Location;
 use App\Entity\Game;
+use App\Entity\Phase;
+use App\Entity\Season;
+use App\Entity\Sport;
+use App\Entity\Team;
 use App\Entity\User;
 use App\Form\CompetitionType;
+use App\Form\GameType;
 use App\Form\LocationType;
+use App\Form\PhaseType;
+use App\Form\SeasonType;
+use App\Form\SportType;
+use App\Form\TeamType;
 use Doctrine\DBAL\Types\Type;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -116,6 +125,7 @@ class DefaultController extends AbstractController
             'locations' => $locations
         ]);
     }
+
     /**
      * @Route("/competition/new", name="new_competition")
      * @param Request $request
@@ -138,6 +148,130 @@ class DefaultController extends AbstractController
         return $this->render('competition_new.html.twig', [
             'form' => $form->createView(),
             'competitions' => $competitions
+        ]);
+    }
+
+    /**
+     * @Route("/season/new", name="new_season")
+     * @param Request $request
+     * @return Response
+     */
+    public function newSeason(Request $request)
+    {
+        $season = new Season();
+        $form = $this->createForm(SeasonType::class, $season);
+        $form->handleRequest($request);
+
+        $seasons = $this->getDoctrine()->getRepository(Season::class)->findBy([], ['name' => 'ASC']);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $season = $form->getData();
+            $season->setId(substr($season->getName(), 0, 4));
+            $this->getDoctrine()->getManager()->persist($season);
+            $this->getDoctrine()->getManager()->flush();
+        }
+
+        return $this->render('season_new.html.twig', [
+            'form' => $form->createView(),
+            'seasons' => $seasons
+        ]);
+    }
+
+    /**
+     * @Route("/phase/new", name="new_phase")
+     * @param Request $request
+     * @return Response
+     */
+    public function newPhase(Request $request)
+    {
+        $phase = new Phase();
+        $form = $this->createForm(PhaseType::class, $phase);
+        $form->handleRequest($request);
+
+        $phases = $this->getDoctrine()->getRepository(Phase::class)->findBy([], ['name' => 'ASC']);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $phase = $form->getData();
+            $this->getDoctrine()->getManager()->persist($phase);
+            $this->getDoctrine()->getManager()->flush();
+        }
+
+        return $this->render('phase_new.html.twig', [
+            'form' => $form->createView(),
+            'phases' => $phases
+        ]);
+    }
+
+    /**
+     * @Route("/team/new", name="new_team")
+     * @param Request $request
+     * @return Response
+     */
+    public function newTeam(Request $request)
+    {
+        $team = new Team();
+        $form = $this->createForm(TeamType::class, $team);
+        $form->handleRequest($request);
+
+        $teams = $this->getDoctrine()->getRepository(Team::class)->findBy([], ['name' => 'ASC']);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $team = $form->getData();
+            $this->getDoctrine()->getManager()->persist($team);
+            $this->getDoctrine()->getManager()->flush();
+        }
+
+        return $this->render('team_new.html.twig', [
+            'form' => $form->createView(),
+            'teams' => $teams
+        ]);
+    }
+
+
+    /**
+     * @Route("/sport/new", name="new_sport")
+     * @param Request $request
+     * @return Response
+     */
+    public function newSport(Request $request)
+    {
+        $sport = new Sport();
+        $form = $this->createForm(SportType::class, $sport);
+        $form->handleRequest($request);
+
+        $sports = $this->getDoctrine()->getRepository(Sport::class)->findBy([], ['name' => 'ASC']);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $sport = $form->getData();
+            $this->getDoctrine()->getManager()->persist($sport);
+            $this->getDoctrine()->getManager()->flush();
+        }
+
+        return $this->render('sport_new.html.twig', [
+            'form' => $form->createView(),
+            'sports' => $sports
+        ]);
+    }
+
+    /**
+     * @Route("/game/new", name="new_game")
+     * @param Request $request
+     * @return Response
+     */
+    public function newGame(Request $request)
+    {
+        $game = new Game();
+        $form = $this->createForm(GameType::class, $game);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $game = $form->getData();
+            $this->getDoctrine()->getManager()->persist($game);
+            $this->getDoctrine()->getManager()->flush();
+        }
+
+        return $this->render('game_new.html.twig', [
+            'form' => $form->createView()
         ]);
     }
 }

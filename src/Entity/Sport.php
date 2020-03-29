@@ -5,12 +5,13 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass="App\Repository\SeasonRepository")
+ * @ORM\Entity(repositoryClass="App\Repository\SportRepository")
  */
-class Season
+class Sport
 {
     /**
      * @ORM\Id()
+     * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
      */
     private $id;
@@ -26,24 +27,20 @@ class Season
     }
 
     /**
-     * @param mixed $id
-     * @return Season
+     * @return mixed
      */
-    public function setId($id)
-    {
-        $this->id = $id;
-        return $this;
-    }
-
-    public function getName(): ?string
+    public function getName()
     {
         return $this->name;
     }
 
-    public function setName(string $name): self
+    /**
+     * @param mixed $name
+     * @return Sport
+     */
+    public function setName($name)
     {
         $this->name = $name;
-
         return $this;
     }
 }

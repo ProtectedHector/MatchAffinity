@@ -44,15 +44,22 @@ class Team
         return $this;
     }
 
-    public function getCompetition(): ?string
+    /**
+     * @return mixed
+     */
+    public function getCompetition()
     {
         return $this->competition;
     }
 
-    public function setCompetition(string $competition): self
+    /**
+     * @param mixed $competition
+     * @return Team
+     */
+    public function setCompetition($competition)
     {
         $this->competition = $competition;
-
         return $this;
     }
+
 }

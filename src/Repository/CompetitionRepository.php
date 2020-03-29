@@ -19,6 +19,19 @@ class CompetitionRepository extends ServiceEntityRepository
         parent::__construct($registry, Competition::class);
     }
 
+    public function getDisplayDropdown()
+    {
+        return $this->createQueryBuilder('c')
+            ->join('c.sport', 's')
+            ->join('c.location', 'l')
+            ->orderBy('c.sport', 'ASC')
+            ->addOrderBy('c.location', 'ASC')
+            ->addOrderBy('c.name', 'ASC')
+            ->getQuery()
+            ->execute()
+            ;
+    }
+
     // /**
     //  * @return Competition[] Returns an array of Competition objects
     //  */

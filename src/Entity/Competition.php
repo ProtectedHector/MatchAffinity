@@ -27,6 +27,17 @@ class Competition
      */
     private $location;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="Sport")
+     * @ORM\JoinColumn(name="sport", referencedColumnName="id")
+     */
+    private $sport;
+
+    /**
+     * @ORM\Column(type="boolean", nullable=false, options={"default":"1"})
+     */
+    private $multianual;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -62,4 +73,39 @@ class Competition
         return $this;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getSport()
+    {
+        return $this->sport;
+    }
+
+    /**
+     * @param mixed $sport
+     * @return Competition
+     */
+    public function setSport($sport)
+    {
+        $this->sport = $sport;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getMultianual()
+    {
+        return $this->multianual;
+    }
+
+    /**
+     * @param mixed $multianual
+     * @return Competition
+     */
+    public function setMultianual($multianual)
+    {
+        $this->multianual = $multianual;
+        return $this;
+    }
 }

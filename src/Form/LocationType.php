@@ -15,16 +15,7 @@ class LocationType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name', TextType::class, [
-                'label' => "Create Location (if it doesn't exist)"
-            ])
-//            ->add('existing', EntityType::class, [
-//                'class' => Location::class,
-//                'choice_label' => 'name',
-//                'label' => 'Select Location: ',
-//                'placeholder' => '--Select--',
-//                'required' => false
-//            ])
+            ->add('name')
             ->add('submit', SubmitType::class)
         ;
     }

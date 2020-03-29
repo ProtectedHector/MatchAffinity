@@ -19,6 +19,17 @@ class TeamRepository extends ServiceEntityRepository
         parent::__construct($registry, Team::class);
     }
 
+    public function getDisplayDropdown()
+    {
+        return $this->createQueryBuilder('t')
+            ->join('t.competition', 'c')
+            ->orderBy('c.name', 'ASC')
+            ->addOrderBy('t.name')
+            ->getQuery()
+            ->execute()
+            ;
+    }
+
     // /**
     //  * @return Team[] Returns an array of Team objects
     //  */
