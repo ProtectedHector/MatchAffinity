@@ -13,6 +13,8 @@
             <th scope="col">Phase</th>
             <th scope="col">Team1</th>
             <th scope="col">Team2</th>
+            <th scope="col">Fun Rate</th>
+            <th scope="col">Historic Rate</th>
             <th scope="col">Observations</th>
             <th scope="col">Last Seen</th>
             <th scope="col">Times Seen</th>
@@ -28,6 +30,8 @@
                 <td>{{ game.phase.name }}</td>
                 <td>{{ game.team1.name }}</td>
                 <td>{{ game.team2.name }}</td>
+                <td>{{ game.team2.funRate }}</td>
+                <td>{{ game.team2.historicRate }}</td>
                 <td>{{ game.observations }}</td>
                 <td>{{ game.dateLastSeen|date("d/m/Y") }}</td>
                 <td>{{ game.timesSeen }}</td>

@@ -11,6 +11,7 @@ use App\Entity\Team;
 use App\Repository\CompetitionRepository;
 use App\Repository\SeasonRepository;
 use App\Repository\TeamRepository;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -28,6 +29,7 @@ class GameType extends AbstractType
     ){
         $this->teamRepository = $teamRepository;
         $this->competitionRepository = $competitionRepository;
+        $this->seasonRepository = $seasonRepository;
     }
 
     public function buildForm(FormBuilderInterface $builder, array $options)
@@ -84,7 +86,26 @@ class GameType extends AbstractType
             ])
             ->add('observations')
             ->add('dateLastSeen')
-            ->add('times_seen')
+            ->add('times_seen', IntegerType::class, [
+                'attr' => [
+                    'min' => 0,
+                    'max' => 100
+                ]
+            ])
+            ->add('funRate', IntegerType::class, [
+                'attr' => [
+                    'min' => 1,
+                    'max' => 5
+                ],
+                'required' => false
+            ])
+            ->add('historicRate', IntegerType::class, [
+                'attr' => [
+                    'min' => 1,
+                    'max' => 5
+                ],
+                'required' => false
+            ])
             ->add('submit', SubmitType::class)
         ;
     }

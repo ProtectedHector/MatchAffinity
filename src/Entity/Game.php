@@ -61,6 +61,16 @@ class Game
      */
     private $timesSeen;
 
+    /**
+     * @ORM\Column(type="integer", nullable=true, options={"min":0, "max":5})
+     */
+    private $funRate;
+
+    /**
+     * @ORM\Column(type="integer", nullable=true, options={"min":0, "max":5})
+     */
+    private $historicRate;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -189,6 +199,42 @@ class Game
     {
         $this->timesSeen = $timesSeen;
 
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getFunRate()
+    {
+        return $this->funRate;
+    }
+
+    /**
+     * @param mixed $funRate
+     * @return Game
+     */
+    public function setFunRate($funRate)
+    {
+        $this->funRate = $funRate;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getHistoricRate()
+    {
+        return $this->historicRate;
+    }
+
+    /**
+     * @param mixed $historicRate
+     * @return Game
+     */
+    public function setHistoricRate($historicRate)
+    {
+        $this->historicRate = $historicRate;
         return $this;
     }
 }
