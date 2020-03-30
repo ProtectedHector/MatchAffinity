@@ -34,6 +34,11 @@ abstract class EnumType extends Type
         return $this->name;
     }
 
+    public function getValues()
+    {
+        return $this->values;
+    }
+
     public function requiresSQLCommentHint(AbstractPlatform $platform)
     {
         return true;

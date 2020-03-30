@@ -71,6 +71,11 @@ class Game
      */
     private $historicRate;
 
+    /**
+     * @ORM\OneToMany(targetEntity="Link", mappedBy="game")
+     */
+    private $links;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -235,6 +240,34 @@ class Game
     public function setHistoricRate($historicRate)
     {
         $this->historicRate = $historicRate;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getLinks()
+    {
+        return $this->links;
+    }
+
+    /**
+     * @param mixed $links
+     * @return Game
+     */
+    public function setLinks($links)
+    {
+        $this->links = $links;
+        return $this;
+    }
+
+    /**
+     * @param $link
+     * @return $this
+     */
+    public function addLink($link)
+    {
+        $this->links[] = $link;
         return $this;
     }
 }

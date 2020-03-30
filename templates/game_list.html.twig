@@ -18,6 +18,8 @@
             <th scope="col">Observations</th>
             <th scope="col">Last Seen</th>
             <th scope="col">Times Seen</th>
+            <th scope="col">Links</th>
+            <th scope="col">Add Link</th>
         </tr>
         </thead>
         <tbody>
@@ -35,6 +37,14 @@
                 <td>{{ game.observations }}</td>
                 <td>{{ game.dateLastSeen|date("d/m/Y") }}</td>
                 <td>{{ game.timesSeen }}</td>
+                <td>
+                {% for link in game.links %}
+                    <a href="{{ link.url }}" target="_blank">{{ loop.index }}</a>&nbsp;
+                {% endfor %}
+                </td>
+                <td>
+                    <a href="{{ path('new_link', {'gameId': game.id}) }}">New</a>
+                </td>
             </tr>
         {% endfor %}
         </tbody>

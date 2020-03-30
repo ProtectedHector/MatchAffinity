@@ -5,6 +5,7 @@ namespace App\Controller;
 
 
 use App\Entity\Competition;
+use App\Entity\Link;
 use App\Entity\Location;
 use App\Entity\Game;
 use App\Entity\Phase;
@@ -14,6 +15,7 @@ use App\Entity\Team;
 use App\Entity\User;
 use App\Form\CompetitionType;
 use App\Form\GameType;
+use App\Form\LinkType;
 use App\Form\LocationType;
 use App\Form\PhaseType;
 use App\Form\SeasonType;
@@ -98,9 +100,6 @@ class DefaultController extends AbstractController
         ]);
     }
 
-
-
-
     /**
      * @Route("/location/new", name="new_location")
      * @param Request $request
@@ -123,6 +122,35 @@ class DefaultController extends AbstractController
         return $this->render('location_new.html.twig', [
             'form' => $form->createView(),
             'locations' => $locations
+        ]);
+    }
+
+    /**
+     * @Route("/link/new/{gameId}", name="new_link", requirements={"gameId": "\d+"})
+     * @param Request $request
+     * @param int $gameId
+     * @return Response
+     */
+    public function newLink(Request $request, int $gameId)
+    {
+        $link = new Link();
+        $form = $this->createForm(LinkType::class, $link);
+        $form->handleRequest($request);
+
+        $links = $this->getDoctrine()->getRepository(Link::class)->findBy([], ['type' => 'ASC']);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $link = $form->getData();
+            $game = $this->getDoctrine()->getManager()->getRepository(Game::class)->find($gameId);
+//            $game = $this->getDoctrine()->getManager()->getReference(Game::class, $gameId);
+            $link->setGame($game);
+            $this->getDoctrine()->getManager()->persist($link);
+            $this->getDoctrine()->getManager()->flush();
+        }
+
+        return $this->render('link_new.html.twig', [
+            'form' => $form->createView(),
+            'links' => $links
         ]);
     }
 

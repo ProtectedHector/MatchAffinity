@@ -26,6 +26,12 @@ class Link
      */
     private $type;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="Game", inversedBy="links")
+     * @ORM\JoinColumn(name="game", referencedColumnName="id")
+     */
+    private $game;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -52,6 +58,24 @@ class Link
     {
         $this->type = $type;
 
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getGame()
+    {
+        return $this->game;
+    }
+
+    /**
+     * @param mixed $game
+     * @return Link
+     */
+    public function setGame($game)
+    {
+        $this->game = $game;
         return $this;
     }
 }
