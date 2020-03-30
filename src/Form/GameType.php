@@ -9,6 +9,7 @@ use App\Entity\Phase;
 use App\Entity\Season;
 use App\Entity\Team;
 use App\Repository\CompetitionRepository;
+use App\Repository\SeasonRepository;
 use App\Repository\TeamRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
@@ -20,9 +21,11 @@ class GameType extends AbstractType
 {
     private $teamRepository;
     private $competitionRepository;
+    private $seasonRepository;
 
-    public function __construct(TeamRepository $teamRepository, CompetitionRepository $competitionRepository)
-    {
+    public function __construct(
+        TeamRepository $teamRepository, CompetitionRepository $competitionRepository, SeasonRepository $seasonRepository
+    ){
         $this->teamRepository = $teamRepository;
         $this->competitionRepository = $competitionRepository;
     }
@@ -44,6 +47,7 @@ class GameType extends AbstractType
             ])
             ->add('season', EntityType::class, [
                 'class' => Season::class,
+                'choices' => $this->seasonRepository->findBy([], ['id' => 'ASC']),
                 'choice_label' => 'name',
                 'label' => 'Select Season: ',
                 'placeholder' => '--Select--',

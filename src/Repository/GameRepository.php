@@ -19,6 +19,19 @@ class GameRepository extends ServiceEntityRepository
         parent::__construct($registry, Game::class);
     }
 
+    public function getSortedList()
+    {
+        return $this->createQueryBuilder('g')
+            ->join('g.competition', 'c')
+            ->join('c.sport', 's')
+            ->orderBy('c.sport', 'ASC')
+            ->addOrderBy('g.competition', 'ASC')
+            ->addOrderBy('g.season', 'ASC')
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+
     // /**
     //  * @return Game[] Returns an array of Game objects
     //  */

@@ -48,7 +48,7 @@ class DefaultController extends AbstractController
      */
     public function listGames()
     {
-        $games = $this->getDoctrine()->getRepository(Game::class)->findAll();
+        $games = $this->getDoctrine()->getRepository(Game::class)->getSortedList();
 
         return $this->render('game_list.html.twig', [
             'games' => $games
