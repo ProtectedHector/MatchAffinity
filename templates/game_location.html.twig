@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    Available locations:
+    {% for location in locations %}
+        {{ location.name }},
+    {% endfor %}
+    {{ form_start(form) }}
+    {{ form_row(form.name) }}
+    {{ form_row(form.submit) }}
+    {{ form(form) }}
+{% endblock %}
+

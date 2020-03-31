@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    Available links: <br />
+    {% for link in links %}
+        {{ link.url }} <br />
+    {% endfor %}
+    {{ form_start(form) }}
+    {{ form_row(form.url) }}
+    {{ form_row(form.type) }}
+    {{ form_row(form.submit) }}
+    {{ form_end(form) }}
+{% endblock %}
+

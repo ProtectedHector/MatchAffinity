@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    Available teams:
+    {% for team in teams %}
+        {{ team.name }},
+    {% endfor %}
+    {{ form_start(form) }}
+    {{ form_row(form.name) }}
+    {{ form_row(form.competition) }}
+    {{ form_row(form.submit) }}
+    {{ form_end(form) }}
+{% endblock %}
+

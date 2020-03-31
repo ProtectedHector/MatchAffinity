@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    Available competitions:
+    {% for competition in competitions %}
+        {{ competition.name }}
+    {% endfor %}
+    {{ form_start(form) }}
+    {{ form_row(form.name) }}
+    {{ form_row(form.location) }} --> <a href="{{ path('new_location') }}">New Location</a>
+    {{ form_row(form.sport) }} --> <a href="{{ path('new_sport') }}">New Sport</a>
+    {{ form_row(form.multianual) }}
+    {{ form_row(form.submit) }}
+    {{ form(form) }}
+{% endblock %}
+

@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <a href="{{ path('new_game') }}">New Game</a>
+    <table class="table">
+        <caption>List of users</caption>
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Sport</th>
+            <th scope="col">Season</th>
+            <th scope="col">Competition</th>
+            <th scope="col">Phase</th>
+            <th scope="col">Team1</th>
+            <th scope="col">Team2</th>
+            <th scope="col">Fun Rate</th>
+            <th scope="col">Historic Rate</th>
+            <th scope="col">Observations</th>
+            <th scope="col">Last Seen</th>
+            <th scope="col">Times Seen</th>
+            <th scope="col">Links</th>
+            <th scope="col">Add Link</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for game in games %}
+            <tr>
+                <th scope="row">{{ game.id }}</th>
+                <td>{{ game.competition.sport.name }}</td>
+                <td>{{ game.season.name }}</td>
+                <td>{{ game.competition.name }}</td>
+                <td>{{ game.phase.name }}</td>
+                <td>{{ game.team1.name }}</td>
+                <td>{{ game.team2.name }}</td>
+                <td>{{ game.funRate }}</td>
+                <td>{{ game.historicRate }}</td>
+                <td>{{ game.observations }}</td>
+                <td>{{ game.dateLastSeen|date("d/m/Y") }}</td>
+                <td>{{ game.timesSeen }}</td>
+                <td>
+                {% for link in game.links %}
+                    <a href="{{ link.url }}" target="_blank">{{ loop.index }}</a>&nbsp;
+                {% endfor %}
+                </td>
+                <td>
+                    <a href="{{ path('new_link', {'gameId': game.id}) }}">New</a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
+
