@@ -27,6 +27,11 @@ class Team
      */
     private $competition;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $teamFlagPath;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -62,4 +67,21 @@ class Team
         return $this;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getTeamFlagPath()
+    {
+        return $this->teamFlagPath;
+    }
+
+    /**
+     * @param mixed $teamFlagPath
+     * @return Team
+     */
+    public function setTeamFlagPath($teamFlagPath)
+    {
+        $this->teamFlagPath = $teamFlagPath;
+        return $this;
+    }
 }

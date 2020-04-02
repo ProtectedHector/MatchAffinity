@@ -21,6 +21,11 @@ class Sport
      */
     private $name;
 
+    /**
+     * @ORM\Column(type="string", length=32, nullable=true)
+     */
+    private $iconKeyword;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -41,6 +46,24 @@ class Sport
     public function setName($name)
     {
         $this->name = $name;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getIconKeyword()
+    {
+        return $this->iconKeyword;
+    }
+
+    /**
+     * @param mixed $iconKeyword
+     * @return Sport
+     */
+    public function setIconKeyword($iconKeyword)
+    {
+        $this->iconKeyword = $iconKeyword;
         return $this;
     }
 }

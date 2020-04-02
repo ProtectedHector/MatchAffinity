@@ -3,6 +3,7 @@
 namespace App\Form;
 
 use App\Entity\Sport;
+use Doctrine\DBAL\Types\TextType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -14,6 +15,9 @@ class SportType extends AbstractType
     {
         $builder
             ->add('name')
+            ->add('iconKeyword', TextType::class, [
+                'required' => false
+            ])
             ->add('submit', SubmitType::class)
         ;
     }

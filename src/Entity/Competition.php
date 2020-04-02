@@ -38,6 +38,11 @@ class Competition
      */
     private $multianual;
 
+    /**
+     * @ORM\Column(type="string", length=32, nullable=true)
+     */
+    private $iconNameWithExtension;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -106,6 +111,24 @@ class Competition
     public function setMultianual($multianual)
     {
         $this->multianual = $multianual;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getIconKeyword()
+    {
+        return $this->iconKeyword;
+    }
+
+    /**
+     * @param mixed $iconKeyword
+     * @return Competition
+     */
+    public function setIconKeyword($iconKeyword)
+    {
+        $this->iconKeyword = $iconKeyword;
         return $this;
     }
 }

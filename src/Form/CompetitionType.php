@@ -5,6 +5,7 @@ namespace App\Form;
 use App\Entity\Competition;
 use App\Entity\Location;
 use App\Entity\Sport;
+use Doctrine\DBAL\Types\TextType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -39,6 +40,9 @@ class CompetitionType extends AbstractType
                 ],
                 'label' => 'Multianual',
                 'placeholder' => 'Select'
+            ])
+            ->add('iconNameWithExtension', TextType::class, [
+                'required' => false
             ])
             ->add('submit', SubmitType::class)
         ;
