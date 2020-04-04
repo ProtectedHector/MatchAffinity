@@ -13,8 +13,17 @@ class PhaseType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name')
-            ->add('submit', SubmitType::class)
+            ->add('name', null, [
+                'attr' => [
+                    'class' => 'form-control'
+                ],
+                'label' => 'Phase Name: '
+            ])
+            ->add('submit', SubmitType::class, [
+                'attr' => [
+                    'class' => 'btn btn-primary'
+                ]
+            ])
         ;
     }
 

@@ -16,18 +16,34 @@ class TeamType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name')
+            ->add('name', null, [
+                'attr' => [
+                    'class' => 'form-control'
+                ],
+                'label' => 'Team Name: '
+            ])
             ->add('competition', EntityType::class, [
                 'class' => Competition::class,
                 'choice_label' => 'name',
                 'label' => 'Select Competition: ',
                 'placeholder' => '--Select--',
-                'required' => true
+                'required' => true,
+                'attr' => [
+                    'class' => 'form-control'
+                ]
             ])
             ->add('teamFlagPath', TextType::class, [
-                'required' => false
+                'required' => false,
+                'attr' => [
+                    'class' => 'form-control'
+                ],
+                'label' => 'Team Flag Path: '
             ])
-            ->add('submit', SubmitType::class)
+            ->add('submit', SubmitType::class, [
+                'attr' => [
+                    'class' => 'btn btn-primary'
+                ]
+            ])
         ;
     }
 

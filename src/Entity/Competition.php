@@ -41,7 +41,7 @@ class Competition
     /**
      * @ORM\Column(type="string", length=32, nullable=true)
      */
-    private $iconNameWithExtension;
+    private $flagPath;
 
     public function getId(): ?int
     {
@@ -129,6 +129,24 @@ class Competition
     public function setIconKeyword($iconKeyword)
     {
         $this->iconKeyword = $iconKeyword;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getFlagPath()
+    {
+        return $this->flagPath;
+    }
+
+    /**
+     * @param mixed $flagPath
+     * @return Competition
+     */
+    public function setFlagPath($flagPath)
+    {
+        $this->flagPath = $flagPath;
         return $this;
     }
 }

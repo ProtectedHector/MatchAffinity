@@ -3,9 +3,11 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\UniqueConstraint;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\SportRepository")
+ * @ORM\Table(name="sport", uniqueConstraints={@UniqueConstraint(name="sport_idx", columns={"name"})})
  */
 class Sport
 {

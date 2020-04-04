@@ -1,14 +1,21 @@
-{% extends 'base.html.twig' %}
+{% extends 'common/base.html.twig' %}
 
 {% block body %}
     Available links: <br />
     {% for link in links %}
-        {{ link.url }} <br />
+        <i class="fas fa-external-link-alt mr-1"></i>{{ link.url }} <br />
     {% endfor %}
+    <hr>
     {{ form_start(form) }}
-    {{ form_row(form.url) }}
-    {{ form_row(form.type) }}
-    {{ form_row(form.submit) }}
+    <div class="form-group">
+        {{ form_row(form.url) }}
+    </div>
+    <div class="form-group">
+        {{ form_row(form.type) }}
+    </div>
+    <div class="form-group">
+        {{ form_row(form.submit) }}
+    </div>
     {{ form_end(form) }}
 {% endblock %}
 

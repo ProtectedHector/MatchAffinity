@@ -36,6 +36,9 @@
             {% endif %}
         {% endblock %}
         <div class="container mt-2">
+            {% block error_messages %}
+                {% include 'common/flash_messages.html.twig' %}
+            {% endblock %}
             {% block body %}
             {% endblock %}
         </div>

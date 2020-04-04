@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\SeasonRepository")
@@ -17,6 +18,14 @@ class Season
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\Length(
+     *      min = 7,
+     *      max = 7,
+     *      minMessage = "Season must be formatted like 1995-96",
+     *      maxMessage = "Season must be formatted like 1995-96",
+     *      allowEmptyString = false
+     * )
+     * @\App\Validator\Season()
      */
     private $name;
 

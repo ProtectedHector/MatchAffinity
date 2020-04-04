@@ -15,8 +15,17 @@ class LocationType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name')
-            ->add('submit', SubmitType::class)
+            ->add('name', null, [
+                'attr' => [
+                    'class' => 'form-control'
+                ],
+                'label' => 'Location Name: '
+            ])
+            ->add('submit', SubmitType::class, [
+                'attr' => [
+                    'class' => 'btn btn-primary'
+                ]
+            ])
         ;
     }
 }

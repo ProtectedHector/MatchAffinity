@@ -1,10 +1,9 @@
-{% extends 'base.html.twig' %}
+{% extends 'common/base.html.twig' %}
 
 {% block body %}
     <table class="table table-striped">
         <caption>
             <div>Iconos de países diseñados por <a href="https://www.flaticon.es/autores/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.es/" title="Flaticon">www.flaticon.es</a></div>
-            <div>Iconos de equipos diseñados por <a href="https://www.flaticon.es/autores/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.es/" title="Flaticon">www.flaticon.es</a></div>
         </caption>
         <thead>
         <tr>
@@ -21,7 +20,7 @@
         {% for game in games %}
             <tr>
                 <th scope="row">{{ game.id }}</th>
-                <td><i class="fas fa-{{ game.competition.sport.iconKeyword }}"></i> {{ game.competition.sport.name }}</td>
+                <td>{{ game.competition.sport.name }}</td>
                 <td>
                     {% if game.competition.multianual %}
                         {{ game.season.name }}
@@ -30,7 +29,8 @@
                     {% endif %}
                 </td>
                 <td>{{ game.competition.name }}</td>
-                <td>{{ game.phase.name }}</td>
+                <td><img style="height: 30px;" src="{{ asset('icons/la-liga/Real Madrid.ico') }}">
+                    {{ game.phase.name }}</td>
                 <td>
                     {% if game.team1.teamFlagPath %}
                         <img style="height: 30px;" src="{{ asset(game.team1.teamFlagPath) }}">
