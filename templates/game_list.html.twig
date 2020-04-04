@@ -32,14 +32,14 @@
                 <td><img style="height: 30px;" src="{{ asset('icons/la-liga/Real Madrid.ico') }}">
                     {{ game.phase.name }}</td>
                 <td>
-                    {% if game.team1.teamFlagPath %}
-                        <img style="height: 30px;" src="{{ asset(game.team1.teamFlagPath) }}">
+                    {% if game.team1.flagPath %}
+                        <img style="height: 30px;" src="{{ asset(game.team1.flagPath) }}">
                     {% endif %}
                     {{ game.team1.name }}
                 </td>
                 <td>
-                    {% if game.team1.teamFlagPath %}
-                        <img style="height: 30px;" src="{{ asset(game.team2.teamFlagPath) }}">
+                    {% if game.team1.flagPath %}
+                        <img style="height: 30px;" src="{{ asset(game.team2.flagPath) }}">
                     {% endif %}
                     {{ game.team2.name }}
                 </td>
