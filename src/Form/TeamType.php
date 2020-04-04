@@ -32,7 +32,7 @@ class TeamType extends AbstractType
                     'class' => 'form-control'
                 ]
             ])
-            ->add('teamFlagPath', TextType::class, [
+            ->add('flagPath', TextType::class, [
                 'required' => false,
                 'attr' => [
                     'class' => 'form-control'
