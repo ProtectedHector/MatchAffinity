@@ -39,7 +39,7 @@ class Competition
     private $multianual;
 
     /**
-     * @ORM\Column(type="string", length=32, nullable=true)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $flagPath;
 

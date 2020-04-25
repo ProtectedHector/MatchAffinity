@@ -8,7 +8,7 @@
         <thead>
         <tr>
             <th scope="col">#</th>
-            <th scope="col">Sport</th>
+            <th scope="col"></th>
             <th scope="col">Season</th>
             <th scope="col">Competition</th>
             <th scope="col">Phase</th>
@@ -20,7 +20,11 @@
         {% for game in games %}
             <tr>
                 <th scope="row">{{ game.id }}</th>
-                <td>{{ game.competition.sport.name }}</td>
+                <td>
+                    {% if game.competition.flagPath is not empty %}
+                        <img style="height: 100px;" src="{{ asset(game.competition.flagPath) }}">
+                    {% endif %}
+                </td>
                 <td>
                     {% if game.competition.multianual %}
                         {{ game.season.name }}
@@ -28,8 +32,10 @@
                         {{ game.season.id }}
                     {% endif %}
                 </td>
-                <td>{{ game.competition.name }}</td>
-                <td><img style="height: 30px;" src="{{ asset('icons/la-liga/Real Madrid.ico') }}">
+                <td>
+                    {{ game.competition.name }}
+                </td>
+                <td>
                     {{ game.phase.name }}</td>
                 <td>
                     {% if game.team1.flagPath %}
@@ -38,7 +44,7 @@
                     {{ game.team1.name }}
                 </td>
                 <td>
-                    {% if game.team1.flagPath %}
+                    {% if game.team2.flagPath %}
                         <img style="height: 30px;" src="{{ asset(game.team2.flagPath) }}">
                     {% endif %}
                     {{ game.team2.name }}
@@ -66,7 +72,6 @@
                     {% endif %}
                     <i class="far fa-calendar-check ml-3"></i> {{ game.dateLastSeen|date("d/m/Y") }}
                     <i class="fas fa-eye ml-3"></i>x{{ game.timesSeen }}
-                    <i class="fas fa-comment ml-3"></i> {{ game.observations }}
 
                     <span class="">
                         {% for link in game.links %}
@@ -75,6 +80,14 @@
                         <a href="{{ path('new_link', {'gameId': game.id}) }}" class="ml-3">Add Link</a>
                     </span>
                 </td>
+            </tr>
+            <tr>
+                <td colspan="7">
+                    <i class="fas fa-comment ml-3"></i> {{ game.observations }}
+                </td>
+            </tr>
+            <tr>
+                <td colspan="7"></td>
             </tr>
         {% endfor %}
         </tbody>
