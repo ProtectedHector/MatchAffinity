@@ -1,0 +1,31 @@
+{% macro form_group(field, newPathName) %}
+    <div class="form-group row">
+        <label class="col-12 col-form-label">{{ form_label(field) }}</label>
+        <div class="col-12">
+            {{ form_widget(field) }}
+        </div>
+        {% if newPathName is not null %}
+            <div class="col-sm-1 pl-0">
+                <a class="small mt-2" href="{{ newPathName }}" title="Create New">Create</a>
+            </div>
+        {% endif %}
+    </div>
+{% endmacro %}
+
+{% macro form_date(field) %}
+    <div class='col-sm-6'>
+        <div class="form-group">
+            <div class='input-group date' id='datetimepicker1'>
+                <input type='text' class="form-control"/>
+                <span class="input-group-addon">
+                    <span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
+                </span>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        $(function () {
+            $('#datetimepicker1').datetimepicker();
+        });
+    </script>
+{% endmacro %}

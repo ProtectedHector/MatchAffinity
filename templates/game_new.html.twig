@@ -1,15 +1,16 @@
 {% extends 'common/base.html.twig' %}
-
+{% import "macros/forms.html.twig" as forms %}
 {% block body %}
     {{ form_start(form) }}
-    {{ form_row(form.competition) }} --> <a href="{{ path('new_competition') }}">New Competition</a>
-    {{ form_row(form.season) }} --> <a href="{{ path('new_season') }}">New Season</a>
-    {{ form_row(form.team1) }} --> <a href="{{ path('new_team') }}">New Team</a>
-    {{ form_row(form.team2) }} --> <a href="{{ path('new_team') }}">New Team</a>
-    {{ form_row(form.phase) }} --> <a href="{{ path('new_phase') }}">New Phase</a>
+    {{ forms.form_group(form.competition, path('new_competition')) }}
+    {{ forms.form_group(form.season, path('new_season')) }}
+    {{ forms.form_group(form.team1, path('new_team')) }}
+    {{ forms.form_group(form.team2, path('new_team')) }}
+    {{ forms.form_group(form.phase, path('new_phase')) }}
     {{ form_row(form.funRate) }}
     {{ form_row(form.historicRate) }}
     {{ form_row(form.observations) }}
+    {{ forms.form_date(form.dateLastSeen) }}
     {{ form_row(form.dateLastSeen) }}
     {{ form_row(form.times_seen) }}
     {{ form_row(form.submit) }}

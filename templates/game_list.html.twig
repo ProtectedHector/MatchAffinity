@@ -7,7 +7,6 @@
         </caption>
         <thead>
         <tr>
-            <th scope="col">#</th>
             <th scope="col"></th>
             <th scope="col">Season</th>
             <th scope="col">Competition</th>
@@ -17,9 +16,11 @@
         </tr>
         </thead>
         <tbody>
+        <tr>
+            <td colspan="7"></td>
+        </tr>
         {% for game in games %}
-            <tr>
-                <th scope="row">{{ game.id }}</th>
+            <tr data-id="{{ game.id }}">
                 <td>
                     {% if game.competition.flagPath is not empty %}
                         <img style="height: 100px;" src="{{ asset(game.competition.flagPath) }}">
