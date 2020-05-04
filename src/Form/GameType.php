@@ -4,29 +4,43 @@ namespace App\Form;
 
 use App\Entity\Competition;
 use App\Entity\Game;
-use App\Entity\Location;
 use App\Entity\Phase;
 use App\Entity\Season;
 use App\Entity\Team;
 use App\Repository\CompetitionRepository;
 use App\Repository\SeasonRepository;
 use App\Repository\TeamRepository;
-use Symfony\Component\Form\Extension\Core\Type\IntegerType;
+use DateTime;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class GameType extends AbstractType
 {
+    /**
+     * @var TeamRepository
+     */
     private $teamRepository;
+
+    /**
+     * @var CompetitionRepository
+     */
     private $competitionRepository;
+
+    /**
+     * @var SeasonRepository
+     */
     private $seasonRepository;
 
     public function __construct(
         TeamRepository $teamRepository, CompetitionRepository $competitionRepository, SeasonRepository $seasonRepository
-    ){
+    )
+    {
         $this->teamRepository = $teamRepository;
         $this->competitionRepository = $competitionRepository;
         $this->seasonRepository = $seasonRepository;
@@ -36,7 +50,7 @@ class GameType extends AbstractType
     {
         $builder
             ->add('competition', EntityType::class, [
-                'choice_label'  => function ($entity) {
+                'choice_label' => function ($entity) {
                     return $entity->getSport()->getName() . ' - ' .
                         $entity->getLocation()->getName() . ' - ' .
                         $entity->getName();
@@ -45,7 +59,10 @@ class GameType extends AbstractType
                 'class' => Competition::class,
                 'label' => 'Select Competition: ',
                 'placeholder' => '--Select--',
-                'required' => true
+                'required' => true,
+                'attr' => [
+                    'class' => 'custom-select'
+                ]
             ])
             ->add('season', EntityType::class, [
                 'class' => Season::class,
@@ -53,10 +70,13 @@ class GameType extends AbstractType
                 'choice_label' => 'name',
                 'label' => 'Select Season: ',
                 'placeholder' => '--Select--',
-                'required' => true
+                'required' => true,
+                'attr' => [
+                    'class' => 'custom-select'
+                ]
             ])
             ->add('team1', EntityType::class, [
-                'choice_label'  => function ($entity) {
+                'choice_label' => function ($entity) {
                     return $entity->getCompetition()->getName() . ' - ' .
                         $entity->getName();
                 },
@@ -64,10 +84,13 @@ class GameType extends AbstractType
                 'class' => Team::class,
                 'label' => 'Select Team1: ',
                 'placeholder' => '--Select--',
-                'required' => true
+                'required' => true,
+                'attr' => [
+                    'class' => 'custom-select'
+                ]
             ])
             ->add('team2', EntityType::class, [
-                'choice_label'  => function ($entity) {
+                'choice_label' => function ($entity) {
                     return $entity->getCompetition()->getName() . ' - ' .
                         $entity->getName();
                 },
@@ -75,38 +98,63 @@ class GameType extends AbstractType
                 'class' => Team::class,
                 'label' => 'Select Team2: ',
                 'placeholder' => '--Select--',
-                'required' => true
+                'required' => true,
+                'attr' => [
+                    'class' => 'custom-select'
+                ]
             ])
             ->add('phase', EntityType::class, [
                 'class' => Phase::class,
                 'choice_label' => 'name',
                 'label' => 'Select Phase: ',
                 'placeholder' => '--Select--',
-                'required' => true
+                'required' => true,
+                'attr' => [
+                    'class' => 'custom-select'
+                ]
             ])
-            ->add('observations')
-            ->add('dateLastSeen')
+            ->add('observations', TextareaType::class, [
+                'attr' => [
+                    'class' => 'form-control'
+                ]
+            ])
+            ->add('dateLastSeen', DateType::class, [
+                'widget' => 'single_text',
+                'format' => 'yyyy-MM-dd',
+                'data' => new DateTime(),
+//                'mapped' => false,
+                'attr' => [
+                    'class' => 'form-control'
+                ],
+            ])
             ->add('times_seen', IntegerType::class, [
                 'attr' => [
                     'min' => 0,
-                    'max' => 100
+                    'max' => 100,
+                    'class' => 'form-control'
                 ]
             ])
             ->add('funRate', IntegerType::class, [
                 'attr' => [
                     'min' => 1,
-                    'max' => 5
+                    'max' => 5,
+                    'class' => 'form-control'
                 ],
                 'required' => false
             ])
             ->add('historicRate', IntegerType::class, [
                 'attr' => [
                     'min' => 1,
-                    'max' => 5
+                    'max' => 5,
+                    'class' => 'form-control'
                 ],
                 'required' => false
             ])
-            ->add('submit', SubmitType::class)
+            ->add('submit', SubmitType::class, [
+                'attr' => [
+                    'class' => 'btn btn-primary'
+                ]
+            ])
         ;
     }
 

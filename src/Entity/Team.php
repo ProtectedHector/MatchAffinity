@@ -3,9 +3,11 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\UniqueConstraint;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\TeamRepository")
+ * @ORM\Table(name="team", uniqueConstraints={@UniqueConstraint(name="team_idx", columns={"name", "competition"})})
  */
 class Team
 {
@@ -26,6 +28,11 @@ class Team
      * @ORM\JoinColumn(name="competition", referencedColumnName="id")
      */
     private $competition;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $flagPath;
 
     public function getId(): ?int
     {
@@ -62,4 +69,21 @@ class Team
         return $this;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getFlagPath()
+    {
+        return $this->flagPath;
+    }
+
+    /**
+     * @param mixed $flagPath
+     * @return Team
+     */
+    public function setFlagPath($flagPath)
+    {
+        $this->flagPath = $flagPath;
+        return $this;
+    }
 }

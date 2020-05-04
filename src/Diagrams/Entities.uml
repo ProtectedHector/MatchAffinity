@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>PHP</ID>
+  <OriginalElement>\App\Entity\Competition</OriginalElement>
+  <nodes>
+    <node x="275.0" y="888.0">\App\Entity\Season</node>
+    <node x="0.0" y="0.0">\App\Entity\Game</node>
+    <node x="794.0" y="0.0">\App\Entity\Team</node>
+    <node x="457.0" y="888.0">\App\Entity\Location</node>
+    <node x="561.0" y="0.0">\App\Entity\User</node>
+    <node x="639.0" y="888.0">\App\Entity\Phase</node>
+    <node x="1058.0" y="0.0">\App\Entity\Link</node>
+    <node x="286.0" y="0.0">\App\Entity\Competition</node>
+    <node x="0.0" y="888.0">\App\Entity\Sport</node>
+  </nodes>
+  <notes />
+  <edges />
+  <settings layout="Hierarchic Group" zoom="1.0" x="502.0" y="310.0" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Fields</Category>
+    <Category>Constants</Category>
+    <Category>Constructors</Category>
+    <Category>Methods</Category>
+  </Categories>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+

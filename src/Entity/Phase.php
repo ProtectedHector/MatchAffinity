@@ -3,9 +3,11 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\UniqueConstraint;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\PhaseRepository")
+ * @ORM\Table(name="phase", uniqueConstraints={@UniqueConstraint(name="phase_idx", columns={"name"})})
  */
 class Phase
 {

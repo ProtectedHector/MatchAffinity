@@ -15,11 +15,23 @@ class LinkType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('url')
-            ->add('type', ChoiceType::class, [
-                'choices' => EnumLinkType::CHOICES
+            ->add('url', null, [
+                'attr' => [
+                    'class' => 'form-control'
+                ],
+                'label' => 'URL: '
             ])
-            ->add('submit', SubmitType::class)
+            ->add('type', ChoiceType::class, [
+                'choices' => EnumLinkType::CHOICES,
+                'attr' => [
+                    'class' => 'form-control'
+                ]
+            ])
+            ->add('submit', SubmitType::class, [
+                'attr' => [
+                    'class' => 'btn btn-primary'
+                ]
+            ])
         ;
     }
 

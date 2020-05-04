@@ -3,3 +3,5 @@
 /var/
 /.idea/
 /.env.test
+/node_modules/
+/public/build/

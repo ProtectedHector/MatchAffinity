@@ -1,16 +1,21 @@
-{% extends 'base.html.twig' %}
+{% extends 'common/base.html.twig' %}
+{% import "macros/forms.html.twig" as forms %}
 
 {% block body %}
     Available competitions:
     {% for competition in competitions %}
         {{ competition.name }}
     {% endfor %}
+    <hr>
     {{ form_start(form) }}
-    {{ form_row(form.name) }}
-    {{ form_row(form.location) }} --> <a href="{{ path('new_location') }}">New Location</a>
-    {{ form_row(form.sport) }} --> <a href="{{ path('new_sport') }}">New Sport</a>
-    {{ form_row(form.multianual) }}
-    {{ form_row(form.submit) }}
+
+    {{ forms.form_field(form.name) }}
+    {{ forms.form_group(form.location, path('new_location')) }}
+    {{ forms.form_group(form.sport, path('new_sport')) }}
+    {{ forms.form_field(form.multianual) }}
+    {{ forms.form_field(form.flagPath) }}
+    {{ forms.form_field(form.submit) }}
+
     {{ form(form) }}
 {% endblock %}
 

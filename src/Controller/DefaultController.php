@@ -21,6 +21,7 @@ use App\Form\PhaseType;
 use App\Form\SeasonType;
 use App\Form\SportType;
 use App\Form\TeamType;
+use Doctrine\DBAL\Exception\UniqueConstraintViolationException;
 use Doctrine\DBAL\Types\Type;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -113,10 +114,17 @@ class DefaultController extends AbstractController
 
         $locations = $this->getDoctrine()->getRepository(Location::class)->findBy([], ['name' => 'ASC']);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $location = $form->getData();
-            $this->getDoctrine()->getManager()->persist($location);
-            $this->getDoctrine()->getManager()->flush();
+        try {
+            if ($form->isSubmitted() && $form->isValid()) {
+                $location = $form->getData();
+                $this->getDoctrine()->getManager()->persist($location);
+                $this->getDoctrine()->getManager()->flush();
+            }
+        } catch (UniqueConstraintViolationException $exception) {
+            $this->addFlash(
+                'warning',
+                $location->getName() . ' is already in the database!'
+            );
         }
 
         return $this->render('location_new.html.twig', [
@@ -137,12 +145,11 @@ class DefaultController extends AbstractController
         $form = $this->createForm(LinkType::class, $link);
         $form->handleRequest($request);
 
-        $links = $this->getDoctrine()->getRepository(Link::class)->findBy([], ['type' => 'ASC']);
+        $links = $this->getDoctrine()->getRepository(Link::class)->findBy(['game' => $gameId], ['type' => 'ASC']);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $link = $form->getData();
             $game = $this->getDoctrine()->getManager()->getRepository(Game::class)->find($gameId);
-//            $game = $this->getDoctrine()->getManager()->getReference(Game::class, $gameId);
             $link->setGame($game);
             $this->getDoctrine()->getManager()->persist($link);
             $this->getDoctrine()->getManager()->flush();
@@ -218,10 +225,17 @@ class DefaultController extends AbstractController
 
         $phases = $this->getDoctrine()->getRepository(Phase::class)->findBy([], ['name' => 'ASC']);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $phase = $form->getData();
-            $this->getDoctrine()->getManager()->persist($phase);
-            $this->getDoctrine()->getManager()->flush();
+        try {
+            if ($form->isSubmitted() && $form->isValid()) {
+                $phase = $form->getData();
+                $this->getDoctrine()->getManager()->persist($phase);
+                $this->getDoctrine()->getManager()->flush();
+            }
+        } catch (UniqueConstraintViolationException $exception) {
+            $this->addFlash(
+                'warning',
+                $phase->getName() . ' is already in the database!'
+            );
         }
 
         return $this->render('phase_new.html.twig', [
@@ -243,10 +257,18 @@ class DefaultController extends AbstractController
 
         $teams = $this->getDoctrine()->getRepository(Team::class)->findBy([], ['name' => 'ASC']);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $team = $form->getData();
-            $this->getDoctrine()->getManager()->persist($team);
-            $this->getDoctrine()->getManager()->flush();
+        try {
+            if ($form->isSubmitted() && $form->isValid()) {
+                $team = $form->getData();
+                $this->getDoctrine()->getManager()->persist($team);
+                $this->getDoctrine()->getManager()->flush();
+            }
+        } catch (UniqueConstraintViolationException $exception) {
+            $this->addFlash(
+                'warning',
+                $team->getName() . ' is already in the database!'
+            );
+
         }
 
         return $this->render('team_new.html.twig', [
@@ -269,10 +291,17 @@ class DefaultController extends AbstractController
 
         $sports = $this->getDoctrine()->getRepository(Sport::class)->findBy([], ['name' => 'ASC']);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $sport = $form->getData();
-            $this->getDoctrine()->getManager()->persist($sport);
-            $this->getDoctrine()->getManager()->flush();
+        try {
+            if ($form->isSubmitted() && $form->isValid()) {
+                $sport = $form->getData();
+                $this->getDoctrine()->getManager()->persist($sport);
+                $this->getDoctrine()->getManager()->flush();
+            }
+        } catch (UniqueConstraintViolationException $exception) {
+            $this->addFlash(
+                'warning',
+                $sport->getName() . ' is already in the database!'
+            );
         }
 
         return $this->render('sport_new.html.twig', [
