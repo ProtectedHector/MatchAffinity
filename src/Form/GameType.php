@@ -10,6 +10,7 @@ use App\Entity\Team;
 use App\Repository\CompetitionRepository;
 use App\Repository\SeasonRepository;
 use App\Repository\TeamRepository;
+use DateTime;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
@@ -21,9 +22,20 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class GameType extends AbstractType
 {
-    private TeamRepository $teamRepository;
-    private CompetitionRepository $competitionRepository;
-    private SeasonRepository $seasonRepository;
+    /**
+     * @var TeamRepository
+     */
+    private $teamRepository;
+
+    /**
+     * @var CompetitionRepository
+     */
+    private $competitionRepository;
+
+    /**
+     * @var SeasonRepository
+     */
+    private $seasonRepository;
 
     public function __construct(
         TeamRepository $teamRepository, CompetitionRepository $competitionRepository, SeasonRepository $seasonRepository
@@ -108,13 +120,11 @@ class GameType extends AbstractType
             ])
             ->add('dateLastSeen', DateType::class, [
                 'widget' => 'single_text',
-
-                // prevents rendering it as type="date", to avoid HTML5 date pickers
-                'html5' => false,
-
-                // adds a class that can be selected in JavaScript
+                'format' => 'yyyy-MM-dd',
+                'data' => new DateTime(),
+//                'mapped' => false,
                 'attr' => [
-                    'class' => 'js-datepicker form-control'
+                    'class' => 'form-control'
                 ],
             ])
             ->add('times_seen', IntegerType::class, [

@@ -1,19 +1,49 @@
 {% extends 'common/base.html.twig' %}
 {% import "macros/forms.html.twig" as forms %}
+
+
+{% block stylesheets %}
+    {{ parent() }}
+
+    <link rel="stylesheet"
+          href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.0/css/bootstrap-datepicker.css">
+{% endblock %}
+
+
+{% block javascripts %}
+    {{ parent() }}
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.0/js/bootstrap-datepicker.min.js"></script>
+
+    <script>
+        jQuery(document).ready(function () {
+            $('.js-datepicker').datepicker();
+        });
+    </script>
+{% endblock %}
+
+
+
+
+
+
 {% block body %}
     {{ form_start(form) }}
+
     {{ forms.form_group(form.competition, path('new_competition')) }}
     {{ forms.form_group(form.season, path('new_season')) }}
     {{ forms.form_group(form.team1, path('new_team')) }}
     {{ forms.form_group(form.team2, path('new_team')) }}
     {{ forms.form_group(form.phase, path('new_phase')) }}
-    {{ form_row(form.funRate) }}
-    {{ form_row(form.historicRate) }}
-    {{ form_row(form.observations) }}
-    {{ forms.form_date(form.dateLastSeen) }}
-    {{ form_row(form.dateLastSeen) }}
-    {{ form_row(form.times_seen) }}
-    {{ form_row(form.submit) }}
+
+    {{ forms.form_field(form.funRate) }}
+    {{ forms.form_field(form.historicRate) }}
+    {{ forms.form_field(form.observations) }}
+    {{ forms.form_field(form.dateLastSeen) }}
+    {{ forms.form_field(form.times_seen) }}
+
+    {{ forms.form_field(form.submit) }}
+
     {{ form_end(form) }}
 {% endblock %}
 

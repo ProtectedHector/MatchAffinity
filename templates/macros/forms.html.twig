@@ -12,20 +12,8 @@
     </div>
 {% endmacro %}
 
-{% macro form_date(field) %}
-    <div class='col-sm-6'>
-        <div class="form-group">
-            <div class='input-group date' id='datetimepicker1'>
-                <input type='text' class="form-control"/>
-                <span class="input-group-addon">
-                    <span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
-                </span>
-            </div>
-        </div>
+{% macro form_field(field) %}
+    <div class="form-group">
+        {{ form_row(field) }}
     </div>
-    <script type="text/javascript">
-        $(function () {
-            $('#datetimepicker1').datetimepicker();
-        });
-    </script>
 {% endmacro %}
