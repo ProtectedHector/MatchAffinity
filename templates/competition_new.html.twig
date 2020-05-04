@@ -1,4 +1,5 @@
 {% extends 'common/base.html.twig' %}
+{% import "macros/forms.html.twig" as forms %}
 
 {% block body %}
     Available competitions:
@@ -7,24 +8,14 @@
     {% endfor %}
     <hr>
     {{ form_start(form) }}
-    <div class="form-group">
-        {{ form_row(form.name) }}
-    </div>
-    <div class="form-group">
-        {{ form_row(form.location) }} --> <a href="{{ path('new_location') }}">New Location</a>
-    </div>
-    <div class="form-group">
-        {{ form_row(form.sport) }} --> <a href="{{ path('new_sport') }}">New Sport</a>
-    </div>
-    <div class="form-group">
-        {{ form_row(form.multianual) }}
-    </div>
-    <div class="form-group">
-        {{ form_row(form.flagPath) }}
-    </div>
-    <div class="form-group">
-        {{ form_row(form.submit) }}
-    </div>
+
+    {{ forms.form_field(form.name) }}
+    {{ forms.form_group(form.location, path('new_location')) }}
+    {{ forms.form_group(form.sport, path('new_sport')) }}
+    {{ forms.form_field(form.multianual) }}
+    {{ forms.form_field(form.flagPath) }}
+    {{ forms.form_field(form.submit) }}
+
     {{ form(form) }}
 {% endblock %}
 

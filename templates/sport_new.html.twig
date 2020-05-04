@@ -1,4 +1,5 @@
 {% extends 'common/base.html.twig' %}
+{% import "macros/forms.html.twig" as forms %}
 
 {% block body %}
     Available sports:
@@ -7,15 +8,12 @@
     {% endfor %}
     <hr>
     {{ form_start(form) }}
-    <div class="form-group">
-        {{ form_row(form.name) }}
-    </div>
-    <div class="form-group">
-        {{ form_row(form.iconKeyword) }}
-    </div>
-    <div class="form-group">
-        {{ form_row(form.submit) }}
-    </div>
+
+    {{ forms.form_field(form.name) }}
+    {{ forms.form_field(form.iconKeyword) }}
+    {{ forms.form_field(form.submit) }}
+
     {{ form_end(form) }}
+
 {% endblock %}
 

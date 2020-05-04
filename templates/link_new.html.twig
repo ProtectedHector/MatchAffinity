@@ -1,21 +1,18 @@
 {% extends 'common/base.html.twig' %}
+{% import "macros/forms.html.twig" as forms %}
 
 {% block body %}
-    Available links: <br />
+    Available links: <br/>
     {% for link in links %}
-        <i class="fas fa-external-link-alt mr-1"></i>{{ link.url }} <br />
+        <i class="fas fa-external-link-alt mr-1"></i>{{ link.url }} <br/>
     {% endfor %}
     <hr>
     {{ form_start(form) }}
-    <div class="form-group">
-        {{ form_row(form.url) }}
-    </div>
-    <div class="form-group">
-        {{ form_row(form.type) }}
-    </div>
-    <div class="form-group">
-        {{ form_row(form.submit) }}
-    </div>
+
+    {{ forms.form_field(form.url) }}
+    {{ forms.form_field(form.type) }}
+    {{ forms.form_field(form.submit) }}
+
     {{ form_end(form) }}
 {% endblock %}
 
