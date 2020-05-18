@@ -1,5 +1,6 @@
 <?php
 
+namespace App\Tests\Domain;
 
 use App\Entity\Location;
 use PHPUnit\Framework\TestCase;
