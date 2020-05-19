@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\Controller;
-
 
 use App\Entity\Competition;
 use App\Entity\Link;
@@ -12,7 +10,6 @@ use App\Entity\Phase;
 use App\Entity\Season;
 use App\Entity\Sport;
 use App\Entity\Team;
-use App\Entity\User;
 use App\Form\CompetitionType;
 use App\Form\GameType;
 use App\Form\LinkType;
@@ -22,11 +19,9 @@ use App\Form\SeasonType;
 use App\Form\SportType;
 use App\Form\TeamType;
 use Doctrine\DBAL\Exception\UniqueConstraintViolationException;
-use Doctrine\DBAL\Types\Type;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
@@ -268,7 +263,6 @@ class DefaultController extends AbstractController
                 'warning',
                 $team->getName() . ' is already in the database!'
             );
-
         }
 
         return $this->render('team_new.html.twig', [

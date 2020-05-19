@@ -117,24 +117,6 @@ class Competition
     /**
      * @return mixed
      */
-    public function getIconKeyword()
-    {
-        return $this->iconKeyword;
-    }
-
-    /**
-     * @param mixed $iconKeyword
-     * @return Competition
-     */
-    public function setIconKeyword($iconKeyword)
-    {
-        $this->iconKeyword = $iconKeyword;
-        return $this;
-    }
-
-    /**
-     * @return mixed
-     */
     public function getFlagPath()
     {
         return $this->flagPath;

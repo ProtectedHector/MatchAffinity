@@ -11,8 +11,8 @@ class EnumLinkType extends EnumType
     protected $values = array('statistics','article','documentary');
 
     const CHOICES = array(
-        'Statistics'	=> self::LINK_STATISTICS,
-        'Article'	    => self::LINK_ARTICLE,
-        'Documentary'  	=> self::LINK_DOCUMENTARY
+        'Statistics' => self::LINK_STATISTICS,
+        'Article' => self::LINK_ARTICLE,
+        'Documentary' => self::LINK_DOCUMENTARY
     );
 }

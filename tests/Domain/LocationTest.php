@@ -12,7 +12,7 @@ final class LocationTest extends TestCase
      *
      * Simple test to check that there is no issue with PHPUnit
      */
-    public function shouldCreateNewEntity()
+    public function it_should_create_a_new_entity()
     {
         $location1 = new Location('location1');
         $location2 = new Location('location1');

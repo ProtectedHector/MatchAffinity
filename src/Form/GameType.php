@@ -38,7 +38,9 @@ class GameType extends AbstractType
     private $seasonRepository;
 
     public function __construct(
-        TeamRepository $teamRepository, CompetitionRepository $competitionRepository, SeasonRepository $seasonRepository
+        TeamRepository $teamRepository,
+        CompetitionRepository $competitionRepository,
+        SeasonRepository $seasonRepository
     )
     {
         $this->teamRepository = $teamRepository;

@@ -15,7 +15,7 @@ class LocationRepositoryTest extends KernelTestCase
     private $entityManager;
 
     /** @test */
-    public function itShouldSaveALocation(): void
+    public function it_should_save_a_location(): void
     {
         $newLocation = new Location('newLocationTest');
         $this->entityManager->persist($newLocation);
