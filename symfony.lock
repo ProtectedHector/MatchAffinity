@@ -105,6 +105,9 @@
     "egulias/email-validator": {
         "version": "2.1.17"
     },
+    "hamcrest/hamcrest-php": {
+        "version": "v2.0.0"
+    },
     "jakub-onderka/php-console-color": {
         "version": "v0.2"
     },
@@ -116,6 +119,9 @@
     },
     "jdorn/sql-formatter": {
         "version": "v1.2.17"
+    },
+    "mockery/mockery": {
+        "version": "1.4.0"
     },
     "monolog/monolog": {
         "version": "2.0.2"
