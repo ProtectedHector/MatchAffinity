@@ -9,6 +9,7 @@
 ###> phpunit/phpunit ###
 /phpunit.xml
 .phpunit.result.cache
+/tests/tmp/
 ###< phpunit/phpunit ###
 
 ###> squizlabs/php_codesniffer ###
