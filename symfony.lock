@@ -105,6 +105,9 @@
     "egulias/email-validator": {
         "version": "2.1.17"
     },
+    "fzaninotto/faker": {
+        "version": "v1.9.1"
+    },
     "hamcrest/hamcrest-php": {
         "version": "v2.0.0"
     },
