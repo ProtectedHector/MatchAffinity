@@ -6,7 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\UniqueConstraint;
 
 /**
- * @ORM\Entity(repositoryClass="App\Repository\LocationRepository")
+ * @ORM\Entity(repositoryClass="LocationDoctrineRepository")
  * @ORM\Table(name="location", uniqueConstraints={@UniqueConstraint(name="location_idx", columns={"name"})})
  */
 class Location
@@ -46,5 +46,12 @@ class Location
         $this->name = $name;
 
         return $this;
+    }
+
+    public static function create(string $name): Location
+    {
+        $location = new self($name);
+
+        return $location;
     }
 }
